@@ -1,0 +1,5 @@
+---
+# defaults file for node
+
+node_install_version: stable
+node_bin_path: /usr/local/bin/node
