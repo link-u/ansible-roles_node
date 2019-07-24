@@ -10,6 +10,13 @@
   become: yes
   when: not bin_node.stat.exists
   block:
+    - name: "Install leaked dependent packages"
+      apt:
+        name:
+          - nodejs-dev
+          - node-gyp
+          - libssl1.0-dev
+        state: present
     - name: Install standard nodejs and npm
       apt:
         name:
