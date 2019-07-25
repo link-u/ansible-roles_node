@@ -17,12 +17,7 @@
           - node-gyp
           - libssl1.0-dev
         state: present
-    - name: Install standard nodejs and npm
-      apt:
-        name:
-          - nodejs
-          - npm
-        state: present
+
     - name: Install standard nodejs and npm
       apt:
         name:
