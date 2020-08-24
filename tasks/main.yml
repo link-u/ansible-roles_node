@@ -2,33 +2,34 @@
 # tasks/main.yml (node)
 # Prefix : node
 
-- name: Check node is installed
-  become: yes
-  stat:
-    path: "{{ node_bin_path }}"
-  register: bin_node
+- name: Pre-install packages
+  apt:
+    name: ["build-essential", "rsync"]
+    state: present
+    update_cache: yes
 
-- name: Install nodejs
-  become: yes
-  when: not bin_node.stat.exists
-  block:
-    - name: Install standard nodejs and npm
-      apt:
-        name: ["nodejs", "npm"]
-        state: present
-        update_cache: yes
+- name: Install n-install
+  command:
+    cmd: >
+      bash -c "set -o pipefail && curl -L https://git.io/n-install | N_PREFIX={{ node_prefix }}/n bash -s -- -y"
+    creates: "{{ node_prefix }}/n"
 
-    - name: Clean cache
-      shell: "npm cache verify  &&  npm install --cache /tmp/empty-cache"
+- name: Install the specified version of node
+  command:
+    cmd: >
+      bash -c "
+        N_PREFIX={{ node_prefix }} N_PRESERVE_NPM=1 {{ node_prefix }}/n/bin/n {{ node_install_version }} &&
+        rm {{ node_prefix }}/n/current_node_version_is_*.create_by_ansible.txt || true &&
+        touch {{ node_prefix }}/n/current_node_version_is_{{ node_install_version }}.create_by_ansible.txt
+      "
+    creates: "{{ node_prefix }}/n/current_node_version_is_{{ node_install_version }}.create_by_ansible.txt"
 
-    - name: Install n on global
-      shell: npm install -g n
-
-    - name: Install specific version node
-      shell: "n {{ node_install_version }}"
-
-    - name: Remove old node and npm
-      apt:
-        name: ["nodejs", "npm"]
-        purge: yes
-        state: absent
+- name: Install the specified version of npm
+  command:
+    cmd: >
+      bash -c "
+        PATH=${PATH}:{{ node_prefix }}/bin {{ node_prefix }}/n/bin/npm install -g npm@{{ node_npm_version }} &&
+        rm {{ node_prefix }}/n/current_npm_version_is_*.create_by_ansible.txt || true &&
+        touch {{ node_prefix }}/n/current_npm_version_is_{{ node_npm_version }}.create_by_ansible.txt
+      "
+    creates: "{{ node_prefix }}/n/current_npm_version_is_{{ node_npm_version }}.create_by_ansible.txt"

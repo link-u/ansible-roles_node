@@ -1,5 +1,7 @@
 ---
-# defaults file for node
+# defaults/main.yml (node)
+# Prefix : node
 
-node_install_version: stable
-node_bin_path: /usr/local/bin/node
+node_install_version: "stable"
+node_npm_version: "latest"
+node_prefix: "/usr/local"
