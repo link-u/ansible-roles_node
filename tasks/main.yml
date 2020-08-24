@@ -1,5 +1,7 @@
 ---
-# tasks file for node
+# tasks/main.yml (node)
+# Prefix : node
+
 - name: Check node is installed
   become: yes
   stat:
@@ -12,14 +14,12 @@
   block:
     - name: Install standard nodejs and npm
       apt:
-        name: "{{ item }}"
+        name: ["nodejs", "npm"]
         state: present
-      with_items:
-        - nodejs
-        - npm
+        update_cache: yes
 
     - name: Clean cache
-      shell: npm cache clean
+      shell: "npm cache verify  &&  npm install --cache /tmp/empty-cache"
 
     - name: Install n on global
       shell: npm install -g n
@@ -29,9 +29,6 @@
 
     - name: Remove old node and npm
       apt:
-        name: "{{ item }}"
+        name: ["nodejs", "npm"]
         purge: yes
         state: absent
-      with_items:
-        - nodejs
-        - npm
