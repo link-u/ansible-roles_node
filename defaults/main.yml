@@ -2,6 +2,16 @@
 # defaults/main.yml (node)
 # Prefix : node
 
+## Node.js のバージョンの指定
 node_install_version: "stable"
+# 設定例
+# node_install_version: "14.8.0"
+# node_install_version: "14"
+
+## npm のバージョンの指定
 node_npm_version: "latest"
+# 設定例
+# node_npm_version: "6.14.8"
+# node_npm_version: "6"
+
 node_prefix: "/usr/local"
