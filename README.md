@@ -1,5 +1,7 @@
 # Node.js
 
+![ansible ci](https://github.com/link-u/ansible-roles_node/workflows/ansible%20ci/badge.svg)
+
 Nodeのインストールを行う。
 
 ## 概要
