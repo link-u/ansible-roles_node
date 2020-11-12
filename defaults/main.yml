@@ -14,4 +14,5 @@ node_npm_version: "latest"
 # node_npm_version: "6.14.8"
 # node_npm_version: "6"
 
-node_prefix: "/usr/local"
+node_prefix: "/usr/local"            ## node のインストール先
+node_skip_pre_install_packages: no   ## Pre-install packages タスクをスキップするかどうか
