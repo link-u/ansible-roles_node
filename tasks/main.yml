@@ -4,7 +4,7 @@
 
 - name: Pre-install packages
   apt:
-    name: ["build-essential", "rsync"]
+    name: ["build-essential", "rsync", "curl"]
     state: present
     update_cache: yes
 
