@@ -1,0 +1,10 @@
+---
+- name: Install Node.js to localhost
+  hosts: localhost
+  connection: local
+  become: no
+  vars:
+    node_skip_pre_install_packages: yes  ## Pre-install packages タスクをスキップ
+    node_prefix: "{{ ansible_env.HOME }}/opt/local"
+  roles:
+    - { role: "{{ (playbook_dir ~ '/..') | realpath }}" }
