@@ -29,7 +29,7 @@
   command:
     cmd: >
       bash -c "
-        PATH=${PATH}:{{ node_prefix }}/bin {{ node_prefix }}/n/bin/npm install -g npm@{{ node_npm_version }} &&
+        PATH=\"${PATH}:{{ node_prefix }}/bin\" {{ node_prefix }}/n/bin/npm install -g npm@{{ node_npm_version }} &&
         rm -f {{ node_prefix }}/n/current_npm_version_is_*.create_by_ansible.txt &&
         touch {{ node_prefix }}/n/current_npm_version_is_{{ node_npm_version }}.create_by_ansible.txt
       "
