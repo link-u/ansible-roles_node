@@ -2,24 +2,40 @@
 
 ![ansible ci](https://github.com/link-u/ansible-roles_node/workflows/ansible%20ci/badge.svg)
 
-## 概要
+## 目次
 
-Node.js と npm のインストールする ansible role.
+<!-- TOC depthFrom:2 -->
+
+- [目次](#目次)
+- [1. 概要](#1-概要)
+- [2. 動作確認バージョン](#2-動作確認バージョン)
+- [3. 使い方 (ansible)](#3-使い方-ansible)
+    - [3.1. Role variables](#31-role-variables)
+    - [3.2. Example Playbook](#32-example-playbook)
+- [4. ローカルホスト (つまり自分の PC ) にインストールする方法](#4-ローカルホスト-つまり自分の-pc--にインストールする方法)
+    - [4.1. プレイブックの実行例](#41-プレイブックの実行例)
+- [5. License](#5-license)
+
+<!-- /TOC -->
+
+## 1. 概要
+
+Node.js と npm のインストールをする ansible role.
 
 本 role では [n](https://github.com/tj/n) という Node.js と npm のバージョンを管理するツールを用いて任意のディレクトリに Node.js と npm をインストールする.
 
 <br>
 
-## 動作確認バージョン
+## 2. 動作確認バージョン
 
 * Ubuntu: 18.04, 20.04
 * ansible: 2.8, 2.9
 
 <br>
 
-## 使い方 (ansible)
+## 3. 使い方 (ansible)
 
-### Role variables
+### 3.1. Role variables
 
 ```yaml
 ## Node.js のバージョンの指定
@@ -39,7 +55,7 @@ node_prefix: "/usr/local"
 
 <br>
 
-### Example Playbook
+### 3.2. Example Playbook
 
 ```yaml
 - hosts:
@@ -51,7 +67,7 @@ node_prefix: "/usr/local"
 
 <br>
 
-## ローカルホスト (つまり自分の PC ) にインストールする方法
+## 4. ローカルホスト (つまり自分の PC ) にインストールする方法
 
 以下のプレイブックを実行することで, 自分の PC に Node.js をインストールすることができる.
 
@@ -68,7 +84,7 @@ $ sudo apt update && sudo apt -y install build-essential rsync curl git
 
 <br>
 
-### プレイブックの実行例
+### 4.1. プレイブックの実行例
 
 ```
 ## 単にプレイブックを実行 (default/main.yml の値を使用)
@@ -90,5 +106,5 @@ $ ansible-playbook playbooks/install_to_localhost.yml \
 
 <br>
 
-## License
+## 5. License
 MIT
