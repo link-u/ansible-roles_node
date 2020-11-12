@@ -10,7 +10,8 @@ Node.js と npm のインストールする ansible role.
 
 ## 動作確認バージョン
 
-comming soon...
+* Ubuntu: 18.04, 20.04
+* ansible: 2.8, 2.9
 
 ## 使い方 (ansible)
 
