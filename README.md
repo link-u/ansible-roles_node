@@ -1,35 +1,47 @@
-Node
-=====
+# Node.js
 
 Nodeのインストールを行う。
 
+## 概要
 
-Requirements
-------------
+Node.js と npm のインストールする ansible role.
 
-Ubuntu16.04
+本 role では [n](https://github.com/tj/n) という Node.js と npm のバージョンを管理するツールを用いて任意のディレクトリに Node.js と npm をインストールする.
 
-Role Variables
---------------
+## 動作確認バージョン
 
-Dependencies
-------------
+comming soon...
 
-none
+## 使い方 (ansible)
 
-Example Playbook
-----------------
+### Role variables
 
-    - hosts: servers
-      roles:
-         - { role: node, tags: ["node"] }
+```yaml
+## Node.js のバージョンの指定
+node_install_version: "stable"
+# 設定例
+# node_install_version: "14.8.0"
+# node_install_version: "14"
 
-License
--------
+## npm のバージョンの指定
+node_npm_version: "latest"
+# 設定例
+# node_npm_version: "6.14.8"
+# node_npm_version: "6"
 
-BSD
+node_prefix: "/usr/local"
+```
 
-Author Information
-------------------
 
-Link-U Inc.
+### Example Playbook
+
+```yaml
+- hosts:
+    - servers
+  become: True
+  roles:
+    - { role: node, tags: ["node"] }
+```
+
+## License
+MIT
