@@ -2,18 +2,20 @@
 
 ![ansible ci](https://github.com/link-u/ansible-roles_node/workflows/ansible%20ci/badge.svg)
 
-Nodeのインストールを行う。
-
 ## 概要
 
 Node.js と npm のインストールする ansible role.
 
 本 role では [n](https://github.com/tj/n) という Node.js と npm のバージョンを管理するツールを用いて任意のディレクトリに Node.js と npm をインストールする.
 
+<br>
+
 ## 動作確認バージョン
 
 * Ubuntu: 18.04, 20.04
 * ansible: 2.8, 2.9
+
+<br>
 
 ## 使い方 (ansible)
 
@@ -35,6 +37,7 @@ node_npm_version: "latest"
 node_prefix: "/usr/local"
 ```
 
+<br>
 
 ### Example Playbook
 
@@ -45,6 +48,8 @@ node_prefix: "/usr/local"
   roles:
     - { role: node, tags: ["node"] }
 ```
+
+<br>
 
 ## License
 MIT
