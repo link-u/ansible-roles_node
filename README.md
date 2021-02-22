@@ -90,18 +90,22 @@ $ sudo apt update && sudo apt -y install build-essential rsync curl git
 ### 5.2. プレイブックの実行例
 
 ```
-## 単にプレイブックを実行 (default/main.yml の値を使用)
+## 前準備: リポジトリのクローンとディレクトリの移動
+$ git clone https://github.com/link-u/ansible-roles_node.git
+$ cd ansible-roles_node
+
+## 例1. 単にプレイブックを実行 (default/main.yml の値を使用)
 $ ansible-playbook playbooks/install_to_localhost.yml
 
-## Node.js のバージョンを指定
+## 例2. Node.js のバージョンを指定
 $ ansible-playbook playbooks/install_to_localhost.yml \
   -e node_install_version="14"
 
-## npm のバージョンを指定
+## 例3. npm のバージョンを指定
 $ ansible-playbook playbooks/install_to_localhost.yml \
   -e node_npm_version="6"
 
-## Node.js と npm のバージョンを指定
+## 例4. Node.js と npm のバージョンを指定
 $ ansible-playbook playbooks/install_to_localhost.yml \
   -e node_install_version="14" \
   -e node_npm_version="6"
